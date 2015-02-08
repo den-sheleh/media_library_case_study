@@ -7,7 +7,9 @@ h3 = t('image.gallery')
       .col-md-2
         = link_to img.file.url, class: 'gallery', rel: "media_item-#{ @media_item.id }", title: "#{ @media_item.title } - #{ img.file_file_name }" do
           = image_tag img.file.url(:thumb), class: 'img-responsive img-thumbnail'
-p = link_to t('image.add'), media_item_images_path(@media_item), class: 'btn btn-success'
+
+- if @media_item.user == current_user
+  p = link_to t('image.add'), media_item_images_path(@media_item), class: 'btn btn-success'
 
 hr
 
@@ -19,9 +21,10 @@ hr
   h3 = MediaItem.human_attribute_name(:video_url)
   = link_to @media_item.video_url
 
-hr
+- if @media_item.user == current_user
+  hr
 
-.btn-toolbar
-  = link_to t('common.edit'), edit_media_item_path(@media_item), class: 'btn btn-warning'
-  = link_to t('common.delete'), media_item_path(@media_item), method: :delete, class: 'btn btn-danger'
+  .btn-toolbar
+    = link_to t('common.edit'), edit_media_item_path(@media_item), class: 'btn btn-warning'
+    = link_to t('common.delete'), media_item_path(@media_item), method: :delete, class: 'btn btn-danger'
 

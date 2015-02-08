@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe LibraryController, type: :controller do
+describe LibrariesController, type: :controller do
   context 'authenticated' do
     let(:user) { FactoryGirl.create(:user) }
     before { sign_in user }
@@ -28,20 +28,21 @@ describe LibraryController, type: :controller do
       end
 
       context 'private library' do
-        before do
-          user.hide!
-          get :show, id: user.id
-        end
+        before { user.hide! }
 
         context 'owner' do
+          before { get :show, id: user.id }
           it { expect(assigns(:media_items)).to include(item) }
           it { expect(response).to render_template('index') }
         end
 
         context 'stranger' do
-          before { sign_in FactoryGirl.create(:user) }
+          before do
+            sign_in FactoryGirl.create(:user)
+            get :show, id: user.id
+          end
 
-          it { expect(flash[:notice]).to eq(I18n.t('library.forbidden')) }
+          it { expect(flash[:alert]).to eq(I18n.t('library.forbidden')) }
           it { expect(response).to redirect_to root_path }
         end
       end

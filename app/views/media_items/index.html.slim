@@ -17,5 +17,13 @@
   - else
     h2.text-center = t('media_item.no_items')
 
-.row.text-center
-  = link_to t('media_item.new'), new_media_item_path, class: 'btn btn-success'
+- unless @media_library
+  .row.text-center.btn-toolbar
+    = link_to t('media_item.new'), new_media_item_path, class: 'btn btn-success'
+    - if current_user.is_public?
+      = link_to t('library.hide'), hide_libraries_path, class: 'btn btn-warning'
+    - else
+      = link_to t('library.share'), share_libraries_path, class: 'btn btn-warning'
+
+  - if current_user.is_public?
+    .share-link.lead.text-center = "Link for sharing: #{ library_url(current_user) }"

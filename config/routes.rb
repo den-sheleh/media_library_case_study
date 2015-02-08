@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   resources :media_items do
     resources :images, only: [:index, :create, :destroy]
   end
+
+  resources :libraries, only: :show do
+    get :share, on: :collection
+    get :hide, on: :collection
+  end
 end

@@ -1,12 +1,12 @@
 class MediaItemsController < ApplicationController
   before_action :init_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:edit, :update, :destroy]
 
   def index
     @media_items = current_user.media_items
   end
 
   def show
-    @media_item = current_user.media_items.find(params[:id])
   end
 
   def new
@@ -46,6 +46,10 @@ class MediaItemsController < ApplicationController
   end
 
   def init_item
-    @media_item = current_user.media_items.find(params[:id])
+    @media_item = MediaItem.find(params[:id])
+  end
+
+  def authenticate
+    redirect_to root_path, alert: t('common.forbidden') if @media_item.user != current_user
   end
 end

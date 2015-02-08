@@ -24,10 +24,15 @@ en:
     cancel: Cancel upload
     missing: No photos yet
     gallery: Gallery
+  library:
+    share: Share library to other
+    hide: Hide library form external access
+    forbidden: Media Library is not exist or it's a private one
   common:
     submit: Submit
     edit: Edit
     delete: Delete
+    forbidden: This action forbidden for You
   activerecord:
     models:
       media_item: Media Item
