@@ -1,0 +1,9 @@
+h2.text-center Sign up
+
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-signin' }) do |f|
+  = f.input :email, as: :email, autofocus: true, required: true, label: false, placeholder: t('user.email')
+  = f.input :password, as: :password, autocomplete: 'off', label: false, placeholder: t('user.password')
+  = f.input :password_confirmation, as: :password, autocomplete: 'off', label: false, placeholder: t('user.confirm')
+
+
+  = f.submit t('user.registration'), class: 'btn btn-lg btn-info btn-block'

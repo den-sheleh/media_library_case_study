@@ -1,5 +1,5 @@
 require 'rails_helper'
 
 describe User, type: :model do
-  pending "Not implemented yet"
+  it { should have_many :media_items }
 end
