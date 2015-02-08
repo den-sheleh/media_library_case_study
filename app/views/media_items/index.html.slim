@@ -1,1 +1,16 @@
-h1 Soon will be there
+.row
+  - if @media_items.present?
+      - @media_items.each do |media_item|
+        .thumbnail
+          .image
+            - if media_item.images.present?
+              = image_tag media_item.images.first.file.url(:thumb), class: 'img-responsive'
+            - else
+              = image_tag 'missing.png', alt: t('image.missing'), class: 'img-responsive'
+          .caption
+            h3.text-center = link_to media_item.title, media_item_images_path(media_item)
+  - else
+    h2.text-center = t('media_item.no_items')
+
+.row.text-center
+  = link_to t('media_item.new'), new_media_item_path, class: 'btn btn-success'

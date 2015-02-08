@@ -1,0 +1,6 @@
+= simple_form_for @media_item, html: { multipart: true } do |f|
+  = f.input :title, autofocus: true, required: true, label: false, placeholder: MediaItem.human_attribute_name(:title)
+  = f.input :website_url, label: false, placeholder: t('media_item.placeholder.website_url')
+  = f.input :video_url, label: false, placeholder: t('media_item.placeholder.video_url')
+
+  = f.submit t('common.submit'), class: 'btn btn-success'

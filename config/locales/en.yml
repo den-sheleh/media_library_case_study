@@ -8,6 +8,23 @@ en:
     email: Email
     password: Password
     confirm: Confirm password
+  media_item:
+    page: Media Library
+    no_items: No items yet
+    new: Add new item
+    success_add: Media Item was successfully created
+    placeholder:
+      website_url: URL for external Website
+      video_url: 'URL for external video service, i.e. YouTube'
   common:
+    submit: Submit
     edit: Edit
     delete: Delete
+  activerecord:
+    models:
+      media_item: Media Item
+    attributes:
+      media_item:
+        title: Title of item
+        website_url: URL for website
+        video_url: URL for video
