@@ -13,7 +13,7 @@
             - else
               = image_tag 'missing.png', alt: t('image.missing'), class: 'img-responsive'
           .caption
-            h3.text-center = link_to media_item.title, media_item_images_path(media_item)
+            h3.text-center = link_to media_item.title, media_item_path(media_item)
   - else
     h2.text-center = t('media_item.no_items')
 

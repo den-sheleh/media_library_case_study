@@ -1,0 +1,27 @@
+h2 = @media_item.title
+
+h3 = t('image.gallery')
+- if @media_item.images
+  .row
+    - @media_item.images.each do |img|
+      .col-md-2
+        = link_to img.file.url, class: 'gallery', rel: "media_item-#{ @media_item.id }", title: "#{ @media_item.title } - #{ img.file_file_name }" do
+          = image_tag img.file.url(:thumb), class: 'img-responsive img-thumbnail'
+p = link_to t('image.add'), media_item_images_path(@media_item), class: 'btn btn-success'
+
+hr
+
+- if @media_item.website_url
+  h3 = MediaItem.human_attribute_name(:website_url)
+  = link_to @media_item.website_url
+
+- if @media_item.video_url
+  h3 = MediaItem.human_attribute_name(:video_url)
+  = link_to @media_item.video_url
+
+hr
+
+.btn-toolbar
+  = link_to t('common.edit'), edit_media_item_path(@media_item), class: 'btn btn-warning'
+  = link_to t('common.delete'), media_item_path(@media_item), method: :delete, class: 'btn btn-danger'
+

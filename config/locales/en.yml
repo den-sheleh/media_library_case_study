@@ -12,6 +12,7 @@ en:
     page: Media Library
     no_items: No items yet
     new: Add new item
+    edit: Edit Media item
     success_add: Media Item was successfully created
     placeholder:
       website_url: URL for external Website
@@ -22,6 +23,7 @@ en:
     upload: Start upload
     cancel: Cancel upload
     missing: No photos yet
+    gallery: Gallery
   common:
     submit: Submit
     edit: Edit

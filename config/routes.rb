@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: 'media_items#index'
 
-  resources :media_items, only: [:index, :new, :create] do
+  resources :media_items do
     resources :images, only: [:index, :create, :destroy]
   end
 end

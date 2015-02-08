@@ -37,7 +37,7 @@ describe MediaItemsController, type: :controller do
     describe 'GET show' do
       let(:item) { FactoryGirl.create(:media_item, user: user) }
 
-      before { get :index, id: item.id }
+      before { get :show, id: item.id }
 
       it { expect(assigns(:media_item)).to eq(item) }
       it { expect(response).to render_template('show') }
@@ -80,7 +80,7 @@ describe MediaItemsController, type: :controller do
 
       before { delete :destroy, id: item.id }
 
-      it { expect { MediaItem.find(media_item.id) }.to raise_exception(ActiveRecord::RecordNotFound) }
+      it { expect { MediaItem.find(item.id) }.to raise_exception(ActiveRecord::RecordNotFound) }
       it { expect(response).to redirect_to(root_path) }
     end
   end
