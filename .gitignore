@@ -12,5 +12,6 @@
 /.ruby-gemset
 
 /public/assets
+/public/media_item
 
 .DS_Store
