@@ -7,4 +7,6 @@ class MediaItem < ActiveRecord::Base
   validates :title, presence: true
   validates :website_url, format: { with: URI.regexp }, allow_blank: true
   validates :video_url, format: { with: URI.regexp }, allow_blank: true
+
+  scope :search, ->(term) { where('title LIKE ?', "%#{term}%") }
 end

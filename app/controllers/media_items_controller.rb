@@ -3,7 +3,7 @@ class MediaItemsController < ApplicationController
   before_action :authenticate, only: [:edit, :update, :destroy]
 
   def index
-    @media_items = current_user.media_items
+    @media_items = params[:q].present? ? current_user.media_items.search(params[:q]) : current_user.media_items
   end
 
   def show

@@ -19,6 +19,11 @@ html lang='en'
       .container
         .navbar-header
           a.navbar-brand href="#{ root_path }" = t('company')
+        - if controller_name == 'media_items' && action_name == 'index'
+          form.navbar-form.navbar-left action="#{ media_items_path }"
+            .form-group
+              input.form-control type="text" placeholder="Search" name="q" value="#{ params[:q] }"
+            button.btn.tn-default type="submit" Submit
         - if user_signed_in?
           .navbar-right
             .middle-nav-content
