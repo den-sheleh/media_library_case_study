@@ -16,6 +16,12 @@ en:
     placeholder:
       website_url: URL for external Website
       video_url: 'URL for external video service, i.e. YouTube'
+  image:
+    new: "Upload images for %{media_item_title}"
+    add: 'Add files...'
+    upload: Start upload
+    cancel: Cancel upload
+    missing: No photos yet
   common:
     submit: Submit
     edit: Edit
