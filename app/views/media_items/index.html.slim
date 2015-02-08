@@ -4,7 +4,12 @@
         .thumbnail
           .image
             - if media_item.images.present?
-              = image_tag media_item.images.first.file.url(:thumb), class: 'img-responsive'
+              = link_to media_item.images.first.file.url, class: 'gallery', rel: "media_item-#{ media_item.id }", title: media_item.title do
+                = image_tag media_item.images.first.file.url(:thumb), class: 'img-responsive'
+              .hide
+                - media_item.images[1..-1].each do |img|
+                  = link_to img.file.url, class: 'gallery', rel: "media_item-#{ media_item.id }", title: media_item.title do
+                    = image_tag img.file.url, class: 'img-responsive'
             - else
               = image_tag 'missing.png', alt: t('image.missing'), class: 'img-responsive'
           .caption
