@@ -6,7 +6,8 @@ describe MediaItemsController, type: :controller do
     before { sign_in user }
 
     describe 'GET index' do
-      let(:own_item) { FactoryGirl.create(:media_item, user: user) }
+      let(:title) { Faker::Lorem.word }
+      let(:own_item) { FactoryGirl.create(:media_item, user: user, title: title) }
       let(:strange_item) { FactoryGirl.create(:media_item, user: FactoryGirl.create(:user)) }
 
       before { get :index }
@@ -14,6 +15,15 @@ describe MediaItemsController, type: :controller do
       it { expect(assigns(:media_items)).to include(own_item) }
       it { expect(assigns(:media_items)).not_to include(strange_item) }
       it { expect(response).to render_template('index') }
+
+      context 'with search query' do
+        let(:another_own_item) { FactoryGirl.create(:media_item, user: user) }
+
+        before { get :index, q: title[0..2] }
+
+        it { expect(assigns(:media_items)).to include(own_item) }
+        it { expect(assigns(:media_items)).not_to include(another_own_item) }
+      end
     end
 
     describe 'GET new' do
